@@ -8,38 +8,75 @@
   <ion-card>
     <!-- Entrada para el valor inicial -->
     <ion-item>
-      <ion-label position="floating">Medida Inicial</ion-label>
+      <ion-label position="floating">Peso Inicial</ion-label>
       <ion-input type="number" [(ngModel)]="inputValue"></ion-input>
     </ion-item>
 
     <!-- Selección de la unidad de entrada -->
-    <ion-item>
+    <ion-card-header>
       <ion-label>Unidad de Entrada</ion-label>
-      <ion-select [(ngModel)]="inputUnit">
-        <ion-select-option value="ton">Tonelada</ion-select-option>
-        <ion-select-option value="kg">Kilogramo</ion-select-option>
-        <ion-select-option value="g">Gramo</ion-select-option>
-        <ion-select-option value="lb">Libra</ion-select-option>
-      </ion-select>
-    </ion-item>
+    </ion-card-header>
+    <ion-list>
+      <ion-radio-group
+        [(ngModel)]="inputUnit"
+        (ionChange)="selectInputUnit($event.detail.value)"
+      >
+        <ion-item>
+          <ion-radio slot="start" value="ton"></ion-radio>
+          <ion-label>Tonelada (ton)</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-radio slot="start" value="kg"></ion-radio>
+          <ion-label>Kilogramo (kg)</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-radio slot="start" value="g"></ion-radio>
+          <ion-label>Gramo (g)</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-radio slot="start" value="lb"></ion-radio>
+          <ion-label>Libra (lb)</ion-label>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
 
     <!-- Selección de la unidad de salida -->
-    <ion-item>
+    <ion-card-header>
       <ion-label>Unidad de Salida</ion-label>
-      <ion-select [(ngModel)]="outputUnit">
-        <ion-select-option value="ton">Tonelada</ion-select-option>
-        <ion-select-option value="kg">Kilogramo</ion-select-option>
-        <ion-select-option value="g">Gramo</ion-select-option>
-        <ion-select-option value="lb">Libra</ion-select-option>
-      </ion-select>
-    </ion-item>
+    </ion-card-header>
+    <ion-list>
+      <ion-radio-group
+        [(ngModel)]="outputUnit"
+        (ionChange)="selectOutputUnit($event.detail.value)"
+      >
+        <ion-item>
+          <ion-radio slot="start" value="ton"></ion-radio>
+          <ion-label>Tonelada (ton)</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-radio slot="start" value="kg"></ion-radio>
+          <ion-label>Kilogramo (kg)</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-radio slot="start" value="g"></ion-radio>
+          <ion-label>Gramo (g)</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-radio slot="start" value="lb"></ion-radio>
+          <ion-label>Libra (lb)</ion-label>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
 
     <!-- Botón para realizar la conversión -->
     <ion-button expand="full" (click)="convert()">Convertir</ion-button>
 
     <!-- Resultado de la conversión -->
-    <ion-card-content>
+    <ion-card-content *ngIf="result !== null">
       <h2>Resultado: {{ result }}</h2>
+    </ion-card-content>
+    <ion-card-content *ngIf="!inputUnit || !outputUnit">
+      <h2>Selecciona una unidad de entrada y salida válidas.</h2>
     </ion-card-content>
   </ion-card>
 </ion-content>
