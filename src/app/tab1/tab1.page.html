@@ -1,17 +1,47 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title> Home </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Convertir Distancia</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-label position="floating">Medida Inicial</ion-label>
+      <ion-input type="number" [(ngModel)]="inputValue"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Unidad de Entrada</ion-label>
+      <ion-select [(ngModel)]="inputUnit">
+        <ion-select-option value="km">Kilómetros</ion-select-option>
+        <ion-select-option value="m">Metros</ion-select-option>
+        <ion-select-option value="cm">Centímetros</ion-select-option>
+        <ion-select-option value="mm">Milímetros</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Unidad de Salida</ion-label>
+      <ion-select [(ngModel)]="outputUnit">
+        <ion-select-option value="km">Kilómetros</ion-select-option>
+        <ion-select-option value="m">Metros</ion-select-option>
+        <ion-select-option value="cm">Centímetros</ion-select-option>
+        <ion-select-option value="mm">Milímetros</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="full" (click)="convert()">Convertir</ion-button>
+
+    <ion-card-content>
+      <h2>Resultado: {{ result }}</h2>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
